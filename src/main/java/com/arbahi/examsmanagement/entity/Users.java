@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -20,7 +22,8 @@ public class Users {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserType type; // admin , teacher
-
+    @ManyToMany(mappedBy = "teachers")
+    private List<TeacherGroup> groups;
 
 }
 

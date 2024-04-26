@@ -52,8 +52,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "teaching_element")
-public class TeachingElement {
-
+public class Teat {
+chingElemen
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer elementId;
