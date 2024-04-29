@@ -19,8 +19,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<Users> getUserById(Integer userId) {
-        return usersRepository.findById(userId);
+    public Users getUserById(Integer userId) {
+        Optional<Users> user= usersRepository.findById(userId);
+        if (user.isPresent())
+            return user.orElse(null);
+        return null;
     }
 
     @Override

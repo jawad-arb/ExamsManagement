@@ -30,7 +30,7 @@ public class UsersController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<UsersDTO> getUserById(@PathVariable Integer userId) {
-        Optional<Users> optionalUser = usersService.getUserById(userId);
+        Optional<Users> optionalUser = Optional.ofNullable(usersService.getUserById(userId));
 
         if (optionalUser.isPresent()) {
             UsersDTO userDTO = mapper.convertToDTO(optionalUser.get());
