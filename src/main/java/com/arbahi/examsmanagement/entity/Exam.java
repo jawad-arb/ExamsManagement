@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -20,19 +19,19 @@ public class Exam {
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    private Semester semester;  // Spring, Autumn (default value inferred from system date)
+    private Semester semester;
 
     @Enumerated(EnumType.STRING)
-    private Session session;  // Normal, Resit (default value is normal)
+    private Session session;
 
     @Enumerated(EnumType.STRING)
-    private ExamType type;  // Exam type (e.g., Supervised Exam 1, Supervised Exam 2) from a list
+    private ExamType type;
 
-    private LocalDate date;
+    private LocalTime date;
     private LocalTime startTime;
 
-    private int plannedDuration;  // Planned duration (e.g., 90 minutes)
-    private int actualDuration;  // Actual duration after exams (defaults to plannedDuration if not set)
+    private int plannedDuration;
+    private int actualDuration;
 
     @ManyToMany
     @JoinTable(
@@ -40,7 +39,7 @@ public class Exam {
             joinColumns = @JoinColumn(name = "exam_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id")
     )
-    private List<Room> rooms;  // Exam rooms
+    private List<Room> rooms;
 
     @ManyToMany
     @JoinTable(
@@ -48,7 +47,7 @@ public class Exam {
             joinColumns = @JoinColumn(name = "exam_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<Users> invigilators;  // Invigilators for each room
+    private List<User> invigilators;
 
     @ManyToMany
     @JoinTable(
@@ -56,7 +55,7 @@ public class Exam {
             joinColumns = @JoinColumn(name = "exam_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<Users> absenceControllers;  // Absence controllers for each room
+    private List<User> absenceControllers;
 
     @ManyToMany
     @JoinTable(
@@ -64,7 +63,7 @@ public class Exam {
             joinColumns = @JoinColumn(name = "exam_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<Users> coordinators;  // Coordinators (default is the course coordinator)
+    private List<User> coordinators;  // Coordinators (default is the course coordinator)
 
     private int academicYear;
 

@@ -1,7 +1,7 @@
 package com.arbahi.examsmanagement.service.impl;
 
 import com.arbahi.examsmanagement.Exceptions.UserNotFoundException;
-import com.arbahi.examsmanagement.entity.Users;
+import com.arbahi.examsmanagement.entity.User;
 import com.arbahi.examsmanagement.repository.UsersRepository;
 import com.arbahi.examsmanagement.service.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -14,29 +14,29 @@ import java.util.Optional;
 public class UsersServiceImpl implements UsersService {
     private final UsersRepository usersRepository;
     @Override
-    public Users createUser(Users user) {
+    public User createUser(User user) {
         return usersRepository.save(user);
     }
 
     @Override
-    public Users getUserById(Integer userId) {
-        Optional<Users> user= usersRepository.findById(userId);
+    public User getUserById(Integer userId) {
+        Optional<User> user= usersRepository.findById(userId);
         if (user.isPresent())
             return user.orElse(null);
         return null;
     }
 
     @Override
-    public List<Users> getAllUsers() {
+    public List<User> getAllUsers() {
         return usersRepository.findAll();
     }
 
     @Override
-    public Users updateUser(Integer userId, Users updatedUser) throws UserNotFoundException {
-        Optional<Users> optionalUser = usersRepository.findById(userId);
+    public User updateUser(Integer userId, User updatedUser) throws UserNotFoundException {
+        Optional<User> optionalUser = usersRepository.findById(userId);
 
         if (optionalUser.isPresent()) {
-            Users existingUser = optionalUser.get();
+            User existingUser = optionalUser.get();
 
             existingUser.setFirstName(updatedUser.getFirstName());
             existingUser.setLastName(updatedUser.getLastName());

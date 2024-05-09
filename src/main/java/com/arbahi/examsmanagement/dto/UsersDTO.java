@@ -21,7 +21,7 @@ public class UsersDTO {
     private String lastName;
 
     @NotNull(message = "Type is required.")
-    private String type; // e.g., "ADMIN" or "TEACHER"
+    private String type;
 
     @Email(message = "Invalid email format.")
     @NotBlank(message = "Email is required.")

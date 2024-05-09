@@ -3,7 +3,7 @@ package com.arbahi.examsmanagement.controller;
 import com.arbahi.examsmanagement.Exceptions.UserNotFoundException;
 import com.arbahi.examsmanagement.dto.UsersDTO;
 import com.arbahi.examsmanagement.dtoMapper.UsersDTOMapper;
-import com.arbahi.examsmanagement.entity.Users;
+import com.arbahi.examsmanagement.entity.User;
 import com.arbahi.examsmanagement.service.UsersService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,13 +24,13 @@ public class UsersController {
 
     @PostMapping
     public ResponseEntity<UsersDTO> createUser(@Valid @RequestBody UsersDTO usersDTO) {
-        Users createdUser = usersService.createUser(mapper.convertToEntity(usersDTO));
+        User createdUser = usersService.createUser(mapper.convertToEntity(usersDTO));
         return new ResponseEntity<>(mapper.convertToDTO(createdUser), HttpStatus.CREATED);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UsersDTO> getUserById(@PathVariable Integer userId) {
-        Optional<Users> optionalUser = Optional.ofNullable(usersService.getUserById(userId));
+        Optional<User> optionalUser = Optional.ofNullable(usersService.getUserById(userId));
 
         if (optionalUser.isPresent()) {
             UsersDTO userDTO = mapper.convertToDTO(optionalUser.get());
@@ -43,17 +43,17 @@ public class UsersController {
 
     @GetMapping
     public ResponseEntity<List<UsersDTO>> getAllUsers() {
-        List<Users> users = usersService.getAllUsers();
+        List<User> users = usersService.getAllUsers();
         List<UsersDTO> usersDTO = new ArrayList<>();
-        for (Users user : users){
+        for (User user : users){
             usersDTO.add(mapper.convertToDTO(user));
         }
         return ResponseEntity.ok(usersDTO);
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UsersDTO> updateUser(@PathVariable Integer userId, @Valid @RequestBody Users user) throws UserNotFoundException {
-        Users updatedUser = usersService.updateUser(userId, user);
+    public ResponseEntity<UsersDTO> updateUser(@PathVariable Integer userId, @Valid @RequestBody User user) throws UserNotFoundException {
+        User updatedUser = usersService.updateUser(userId, user);
         return ResponseEntity.ok(mapper.convertToDTO(updatedUser));
     }
 

@@ -3,7 +3,7 @@ package com.arbahi.examsmanagement.service.impl;
 import com.arbahi.examsmanagement.dto.PedagogicalElementDTO;
 import com.arbahi.examsmanagement.dtoMapper.PedagogicalElementDTOMapper;
 import com.arbahi.examsmanagement.entity.PedagogicalElement;
-import com.arbahi.examsmanagement.entity.Users;
+import com.arbahi.examsmanagement.entity.User;
 import com.arbahi.examsmanagement.enums.UserType;
 import com.arbahi.examsmanagement.repository.PedagogicalElementRepository;
 import com.arbahi.examsmanagement.repository.UsersRepository;
@@ -25,7 +25,7 @@ public class PedagogicalElementServiceImpl implements PedagogicalElementService 
     @Override
     public PedagogicalElementDTO addElement(PedagogicalElement element) {
         if (element.getCoordinator() == null) {
-            Users defaultCoordinator = usersRepository.findFirstByType(UserType.TEACHER);
+            User defaultCoordinator = usersRepository.findFirstByType(UserType.TEACHER);
             element.setCoordinator(defaultCoordinator);
         }
 

@@ -2,7 +2,7 @@ package com.arbahi.examsmanagement.dtoMapper;
 
 import com.arbahi.examsmanagement.dto.TeacherGroupDTO;
 import com.arbahi.examsmanagement.entity.TeacherGroup;
-import com.arbahi.examsmanagement.entity.Users;
+import com.arbahi.examsmanagement.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class TeacherGroupDTOMapper {
         teacherGroupDTO.setDescription(teacherGroup.getDescription());
 
         List<Integer> teacherIds = new ArrayList<>();
-        for (Users teacher : teacherGroup.getTeachers()) {
+        for (User teacher : teacherGroup.getTeachers()) {
             teacherIds.add(teacher.getUserId());
         }
         teacherGroupDTO.setTeacherIds(teacherIds);
@@ -32,9 +32,9 @@ public class TeacherGroupDTOMapper {
         teacherGroup.setName(teacherGroupDTO.getName());
         teacherGroup.setDescription(teacherGroupDTO.getDescription());
 
-        List<Users> teachers = new ArrayList<>();
+        List<User> teachers = new ArrayList<>();
         for (Integer teacherId : teacherGroupDTO.getTeacherIds()) {
-            Users teacher = new Users();
+            User teacher = new User();
             teacher.setUserId(teacherId);
             teachers.add(teacher);
         }

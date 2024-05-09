@@ -20,7 +20,7 @@ public class Room {
     @ManyToMany(mappedBy = "rooms")
     private Set<Exam> exams;
     @OneToMany(mappedBy = "room")
-    private Set<InvigilatorAssignment> invigilatorAssignments;
+    private Set<SupervisorAssignment> invigilatorAssignments;
 
     @OneToMany(mappedBy = "room")
     private Set<AbsenceControllerAssignment> absenceControllerAssignments;

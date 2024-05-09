@@ -23,6 +23,6 @@ public class TeacherGroup {
             joinColumns = @JoinColumn(name = "group_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<Users> teachers;
+    private List<User> teachers;
 
 }

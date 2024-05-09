@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class InvigilatorAssignment {
+public class SupervisorAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,5 +26,5 @@ public class InvigilatorAssignment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Users invigilator;
+    private User invigilator;
 }

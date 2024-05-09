@@ -23,6 +23,6 @@ public class AbsenceControllerAssignment {
     private Room room;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Users absenceController;
+    private User absenceController;
 
 }

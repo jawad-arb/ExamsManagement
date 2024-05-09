@@ -10,6 +10,5 @@ import java.util.Collection;
 public interface PedagogicalElementRepository extends JpaRepository<PedagogicalElement,Integer> {
     @Query(value = "SELECT * FROM pedagogical_element WHERE coordinator_id = :coordinatorId", nativeQuery = true)
     PedagogicalElement findByCoordinatorId(@Param("coordinatorId") Integer coordinatorId);
-
     Collection<Object> findByType(String type);
 }

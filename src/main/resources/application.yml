@@ -21,3 +21,8 @@ spring:
     init:
       mode: always
       continue-on-error: false
+
+#logging:
+#  level:
+#    org:
+#      springframework=DEBUG:
