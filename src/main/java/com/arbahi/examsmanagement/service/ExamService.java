@@ -1,18 +1,17 @@
 package com.arbahi.examsmanagement.service;
 
 import com.arbahi.examsmanagement.dto.ExamDTO;
-import com.arbahi.examsmanagement.entity.Exam;
 
 import java.util.List;
 
 public interface ExamService {
     List<ExamDTO> getAllExams();
 
-    ExamDTO getExamById(Long id);
+    ExamDTO getExamById(Integer id);
 
-    ExamDTO createExam(Exam exam);
+    ExamDTO createExam(ExamDTO examDTO);
 
-    ExamDTO updateExam(Long id, Exam updatedExam);
+    ExamDTO updateExam(Integer id, ExamDTO updatedExamDTO);
 
-    boolean deleteExam(Long id);
+    boolean deleteExam(Integer id);
 }

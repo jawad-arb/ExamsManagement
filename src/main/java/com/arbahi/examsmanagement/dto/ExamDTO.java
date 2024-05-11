@@ -26,8 +26,4 @@ public class ExamDTO {
     private List<Integer> invigilatorIds; // List of IDs for the invigilators assigned to the exam
     private List<Integer> absenceControllerIds; // List of IDs for the staff members assigned to control absences
     private String academicYear; // Academic year of the exam
-    private String examPaper; // Path or reference to the exam paper file
-    private String examReport; // Path or reference to the exam report file
-    private String reportText; // Text report describing the exam
-    private String status;
 }

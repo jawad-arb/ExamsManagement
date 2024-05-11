@@ -1,29 +1,20 @@
 package com.arbahi.examsmanagement.controller;
 
 import com.arbahi.examsmanagement.dto.ExamDTO;
-import com.arbahi.examsmanagement.entity.Exam;
 import com.arbahi.examsmanagement.service.ExamService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * for revising in the case of the mapping
- */
-
 
 @RestController
 @RequestMapping("/api/exams")
+@RequiredArgsConstructor
 public class ExamController {
 
     private final ExamService examService;
-
-    @Autowired
-    public ExamController(ExamService examService) {
-        this.examService = examService;
-    }
 
     @GetMapping
     public ResponseEntity<List<ExamDTO>> getAllExams() {
@@ -32,7 +23,7 @@ public class ExamController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExamDTO> getExamById(@PathVariable Long id) {
+    public ResponseEntity<ExamDTO> getExamById(@PathVariable Integer id) {
         ExamDTO exam = examService.getExamById(id);
         if (exam != null) {
             return ResponseEntity.ok(exam);
@@ -42,13 +33,13 @@ public class ExamController {
     }
 
     @PostMapping
-    public ResponseEntity<ExamDTO> createExam(@RequestBody Exam exam) {
+    public ResponseEntity<ExamDTO> createExam(@RequestBody ExamDTO exam) {
         ExamDTO createdExam = examService.createExam(exam);
         return ResponseEntity.ok(createdExam);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExamDTO> updateExam(@PathVariable Long id, @RequestBody Exam updatedExam) {
+    public ResponseEntity<ExamDTO> updateExam(@PathVariable Integer id, @RequestBody ExamDTO updatedExam) {
         ExamDTO exam = examService.updateExam(id, updatedExam);
         if (exam != null) {
             return ResponseEntity.ok(exam);
@@ -58,7 +49,7 @@ public class ExamController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteExam(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteExam(@PathVariable Integer id) {
         boolean deleted = examService.deleteExam(id);
         if (deleted) {
             return ResponseEntity.noContent().build();

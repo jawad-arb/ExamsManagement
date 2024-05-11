@@ -14,7 +14,7 @@ import lombok.Setter;
 public class SupervisorAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)

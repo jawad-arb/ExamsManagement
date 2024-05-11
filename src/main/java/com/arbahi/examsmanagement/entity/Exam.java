@@ -69,11 +69,11 @@ public class Exam {
 
     private String report;  // Textual report (defaults to "Nothing to report")
 
-    @Lob
-    private byte[] examPaper;  // File containing a copy of the exam paper
-
-    @Lob
-    private byte[] examReport;  // File containing a copy of the exam report
+//    @Lob
+//    private byte[] examPaper;  // File containing a copy of the exam paper
+//
+//    @Lob
+//    private byte[] examReport;  // File containing a copy of the exam report
 
 
     public Exam() {

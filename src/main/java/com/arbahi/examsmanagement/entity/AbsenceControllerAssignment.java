@@ -24,5 +24,4 @@ public class AbsenceControllerAssignment {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User absenceController;
-
 }
