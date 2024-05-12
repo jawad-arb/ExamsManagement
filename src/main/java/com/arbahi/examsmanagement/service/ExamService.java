@@ -9,9 +9,9 @@ public interface ExamService {
 
     ExamDTO getExamById(Integer id);
 
-    ExamDTO createExam(ExamDTO examDTO);
+    ExamDTO createExam(ExamDTO exam) throws Exception;
 
-    ExamDTO updateExam(Integer id, ExamDTO updatedExamDTO);
+    ExamDTO updateExam(Integer id, ExamDTO exam) throws Exception;
 
     boolean deleteExam(Integer id);
 }

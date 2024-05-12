@@ -30,7 +30,7 @@ public class SupervisorAssignmentController {
     }
 
     @PostMapping
-    public ResponseEntity<SupervisorAssignmentDTO> createSupervisorAssignment(@RequestBody SupervisorAssignmentDTO assignmentDTO) {
+    public ResponseEntity<SupervisorAssignmentDTO> createSupervisorAssignment(@RequestBody SupervisorAssignmentDTO assignmentDTO) throws Exception {
         SupervisorAssignmentDTO createdAssignment = supervisorAssignmentService.createSupervisorAssignment(assignmentDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAssignment);
     }

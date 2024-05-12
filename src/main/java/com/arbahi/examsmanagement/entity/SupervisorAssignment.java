@@ -2,8 +2,7 @@ package com.arbahi.examsmanagement.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * invigilator assignment for the TEACHER
@@ -11,6 +10,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class SupervisorAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

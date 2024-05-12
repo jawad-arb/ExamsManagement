@@ -30,13 +30,13 @@ public class AbsenceControllerAssignmentController {
     }
 
     @PostMapping
-    public ResponseEntity<AbsenceControllerAssignmentDTO> createAbsenceControllerAssignment(@RequestBody AbsenceControllerAssignmentDTO assignmentDTO) {
+    public ResponseEntity<AbsenceControllerAssignmentDTO> createAbsenceControllerAssignment(@RequestBody AbsenceControllerAssignmentDTO assignmentDTO) throws Exception {
         AbsenceControllerAssignmentDTO createdAssignment = absenceControllerAssignmentService.createAbsenceControllerAssignment(assignmentDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAssignment);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AbsenceControllerAssignmentDTO> updateAbsenceControllerAssignment(@PathVariable Integer id, @RequestBody AbsenceControllerAssignmentDTO updatedAssignmentDTO) {
+    public ResponseEntity<AbsenceControllerAssignmentDTO> updateAbsenceControllerAssignment(@PathVariable Integer id, @RequestBody AbsenceControllerAssignmentDTO updatedAssignmentDTO) throws Exception {
         Optional<AbsenceControllerAssignmentDTO> updatedAssignment = absenceControllerAssignmentService.updateAbsenceControllerAssignment(id, updatedAssignmentDTO);
         return updatedAssignment.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }

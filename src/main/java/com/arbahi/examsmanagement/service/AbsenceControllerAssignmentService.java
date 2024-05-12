@@ -10,9 +10,9 @@ public interface AbsenceControllerAssignmentService {
 
     Optional<AbsenceControllerAssignmentDTO> getAbsenceControllerAssignmentById(Integer id);
 
-    AbsenceControllerAssignmentDTO createAbsenceControllerAssignment(AbsenceControllerAssignmentDTO assignmentDTO);
+    AbsenceControllerAssignmentDTO createAbsenceControllerAssignment(AbsenceControllerAssignmentDTO assignmentDTO) throws Exception;
 
-    Optional<AbsenceControllerAssignmentDTO> updateAbsenceControllerAssignment(Integer id, AbsenceControllerAssignmentDTO updatedAssignmentDTO);
+    Optional<AbsenceControllerAssignmentDTO> updateAbsenceControllerAssignment(Integer id, AbsenceControllerAssignmentDTO updatedAssignmentDTO) throws Exception;
 
     boolean deleteAbsenceControllerAssignment(Integer id);
 

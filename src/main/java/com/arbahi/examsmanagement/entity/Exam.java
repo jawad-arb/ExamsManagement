@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -27,10 +27,11 @@ public class Exam {
     @Enumerated(EnumType.STRING)
     private ExamType type;
 
-    private LocalTime date;
-    private LocalTime startTime;
+    private LocalDateTime date;
+    private LocalDateTime startTime;
 
     private int plannedDuration;
+    @Column(nullable = false)
     private int actualDuration;
 
     @ManyToMany

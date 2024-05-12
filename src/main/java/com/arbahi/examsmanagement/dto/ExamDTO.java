@@ -17,13 +17,10 @@ public class ExamDTO {
     private String semester;
     private String session;
     private String type;
-    private LocalDateTime date;
     private LocalDateTime startTime;
-    private Integer plannedDuration;
     private Integer actualDuration;
-    private Integer coordinatorId;
+    private List<Integer> CoordinatorId;
     private List<Integer> roomIds;
     private List<Integer> invigilatorIds; // List of IDs for the invigilators assigned to the exam
     private List<Integer> absenceControllerIds; // List of IDs for the staff members assigned to control absences
-    private String academicYear; // Academic year of the exam
 }

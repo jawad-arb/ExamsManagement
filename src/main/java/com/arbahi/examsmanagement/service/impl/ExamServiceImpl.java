@@ -34,19 +34,18 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
-    public ExamDTO createExam(ExamDTO examDTO) {
+    public ExamDTO createExam(ExamDTO examDTO) throws Exception {
         Exam exam = examDTOMapper.convertToEntity(examDTO);
         Exam savedExam = examRepository.save(exam);
         return examDTOMapper.convertToDTO(savedExam);
     }
 
     @Override
-    public ExamDTO updateExam(Integer id, ExamDTO updatedExamDTO) {
+    public ExamDTO updateExam(Integer id, ExamDTO updatedExamDTO) throws Exception {
         Optional<Exam> optionalExam = examRepository.findById(id);
         if (optionalExam.isPresent()) {
-            Exam existingExam = optionalExam.get();
-            existingExam.setId(id);
             Exam updatedExam = examDTOMapper.convertToEntity(updatedExamDTO);
+            updatedExam.setId(id);
             Exam savedExam = examRepository.save(updatedExam);
             return examDTOMapper.convertToDTO(savedExam);
         }

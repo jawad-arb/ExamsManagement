@@ -2,7 +2,7 @@ package com.arbahi.examsmanagement.controller;
 
 import com.arbahi.examsmanagement.dto.ExamDTO;
 import com.arbahi.examsmanagement.service.ExamService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/exams")
-@RequiredArgsConstructor
 public class ExamController {
 
     private final ExamService examService;
+
+    @Autowired
+    public ExamController(ExamService examService) {
+        this.examService = examService;
+    }
 
     @GetMapping
     public ResponseEntity<List<ExamDTO>> getAllExams() {
@@ -33,13 +37,13 @@ public class ExamController {
     }
 
     @PostMapping
-    public ResponseEntity<ExamDTO> createExam(@RequestBody ExamDTO exam) {
+    public ResponseEntity<ExamDTO> createExam(@RequestBody ExamDTO exam) throws Exception {
         ExamDTO createdExam = examService.createExam(exam);
         return ResponseEntity.ok(createdExam);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExamDTO> updateExam(@PathVariable Integer id, @RequestBody ExamDTO updatedExam) {
+    public ResponseEntity<ExamDTO> updateExam(@PathVariable Integer id, @RequestBody ExamDTO updatedExam) throws Exception {
         ExamDTO exam = examService.updateExam(id, updatedExam);
         if (exam != null) {
             return ResponseEntity.ok(exam);

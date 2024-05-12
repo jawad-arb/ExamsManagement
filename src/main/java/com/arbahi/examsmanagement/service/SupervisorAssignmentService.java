@@ -10,7 +10,7 @@ public interface SupervisorAssignmentService {
 
     Optional<SupervisorAssignmentDTO> getSupervisorAssignmentById(Integer id);
 
-    SupervisorAssignmentDTO createSupervisorAssignment(SupervisorAssignmentDTO assignmentDTO);
+    SupervisorAssignmentDTO createSupervisorAssignment(SupervisorAssignmentDTO assignmentDTO) throws Exception;
 
     Optional<SupervisorAssignmentDTO> updateSupervisorAssignment(Integer id, SupervisorAssignmentDTO updatedAssignmentDTO);
 
