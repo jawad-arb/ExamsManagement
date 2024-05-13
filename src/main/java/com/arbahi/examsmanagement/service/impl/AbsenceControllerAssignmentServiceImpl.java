@@ -38,7 +38,7 @@ public class AbsenceControllerAssignmentServiceImpl implements AbsenceController
 
     @Override
     public AbsenceControllerAssignmentDTO createAbsenceControllerAssignment(AbsenceControllerAssignmentDTO assignmentDTO) throws Exception {
-        Optional<User> invigilatorOptional = userRepository.findById(assignmentDTO.getAbsenceControllerId());
+        Optional<User> invigilatorOptional = userRepository.findById(assignmentDTO.getAbsenceController().getUserId());
         if (invigilatorOptional.isEmpty()) {
             throw new Exception("Invigilator user not found");
         }

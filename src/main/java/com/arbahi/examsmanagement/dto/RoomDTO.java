@@ -2,7 +2,7 @@ package com.arbahi.examsmanagement.dto;
 
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -13,7 +13,7 @@ public class RoomDTO {
     private Integer id;
     private String name;
     private int capacity;
-    private List<Integer> examsId;
-    private List<Integer> invigilatorAssignmentsId;
-    private List<Integer> absenceControllerAssignmentsId;
+    private Set<ExamDTO> exams;
+    private Set<SupervisorAssignmentDTO> invigilatorAssignments;
+    private Set<AbsenceControllerAssignmentDTO> absenceControllerAssignments;
 }

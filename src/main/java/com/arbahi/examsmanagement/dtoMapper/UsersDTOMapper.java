@@ -2,29 +2,15 @@ package com.arbahi.examsmanagement.dtoMapper;
 
 import com.arbahi.examsmanagement.dto.UsersDTO;
 import com.arbahi.examsmanagement.entity.User;
-import com.arbahi.examsmanagement.enums.UserType;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
-@Component
-public class UsersDTOMapper {
-    public UsersDTO convertToDTO(User user) {
-        UsersDTO dto = new UsersDTO();
-        dto.setUserId(user.getUserId());
-        dto.setFirstName(user.getFirstName());
-        dto.setLastName(user.getLastName());
-        dto.setEmail(user.getEmail());
-        dto.setType(user.getType().name());
-        return dto;
-    }
-    public User convertToEntity(UsersDTO dto) {
-        User user = new User();
-        user.setUserId(dto.getUserId());
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setEmail(dto.getEmail());
-        user.setPassword("password");
-        user.setType(UserType.valueOf(dto.getType()));
-        return user;
-    }
+import java.util.List;
 
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+public  interface UsersDTOMapper {
+    UsersDTO convertToDTO(User user);
+    User convertToEntity(UsersDTO usersDTO);
+    List<UsersDTO> convertToDTOs(List<User> users);
+    List<User> convertToEntities(List<UsersDTO> usersDTOs);
 }

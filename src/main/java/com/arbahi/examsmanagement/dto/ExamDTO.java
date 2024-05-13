@@ -13,14 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ExamDTO {
-    private Integer examId;
+    private Integer id;
     private String semester;
     private String session;
     private String type;
     private LocalDateTime startTime;
-    private Integer actualDuration;
-    private List<Integer> CoordinatorId;
-    private List<Integer> roomIds;
-    private List<Integer> invigilatorIds; // List of IDs for the invigilators assigned to the exam
-    private List<Integer> absenceControllerIds; // List of IDs for the staff members assigned to control absences
+    private int actualDuration;
+    private List<UsersDTO> coordinators;
+    private List<RoomDTO> rooms;
+    private List<UsersDTO> invigilators; // List of IDs for the invigilators assigned to the exam
+    private List<UsersDTO> absenceControllers; // List of IDs for the staff members assigned to control absences
 }

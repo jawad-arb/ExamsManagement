@@ -13,6 +13,6 @@ public class TeacherGroupDTO {
     private Integer groupId;
     private String name;
     private String description;
-    private List<Integer> teacherIds;
+    private List<UsersDTO> teachers;
 
 }

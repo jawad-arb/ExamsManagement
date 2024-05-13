@@ -39,7 +39,7 @@ public class SupervisorAssignmentServiceImpl implements SupervisorAssignmentServ
     @Override
     public SupervisorAssignmentDTO createSupervisorAssignment(SupervisorAssignmentDTO assignmentDTO) throws Exception {
 
-        Optional<User> invigilatorOptional = userRepository.findById(assignmentDTO.getInvigilatorId());
+        Optional<User> invigilatorOptional = userRepository.findById(assignmentDTO.getInvigilator().getUserId());
         if (invigilatorOptional.isEmpty()) {
             throw new Exception("Invigilator user not found");
         }

@@ -2,44 +2,17 @@ package com.arbahi.examsmanagement.dtoMapper;
 
 import com.arbahi.examsmanagement.dto.TeacherGroupDTO;
 import com.arbahi.examsmanagement.entity.TeacherGroup;
-import com.arbahi.examsmanagement.entity.User;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class TeacherGroupDTOMapper {
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = UsersDTOMapper.class )
+public interface TeacherGroupDTOMapper {
 
-    public TeacherGroupDTO convertToDTO(TeacherGroup teacherGroup) {
-        TeacherGroupDTO teacherGroupDTO = new TeacherGroupDTO();
-        teacherGroupDTO.setGroupId(teacherGroup.getGroupId());
-        teacherGroupDTO.setName(teacherGroup.getName());
-        teacherGroupDTO.setDescription(teacherGroup.getDescription());
+     TeacherGroupDTO convertToDTO(TeacherGroup teacherGroup);
+     TeacherGroup convertToEntity(TeacherGroupDTO teacherGroupDTO);
+    public List<TeacherGroupDTO> convertToDTOs(List<TeacherGroup> teacherGroups);
+    public List<TeacherGroup> convertToEntities(List<TeacherGroupDTO> teacherGroupDTOs);
 
-        List<Integer> teacherIds = new ArrayList<>();
-        for (User teacher : teacherGroup.getTeachers()) {
-            teacherIds.add(teacher.getUserId());
-        }
-        teacherGroupDTO.setTeacherIds(teacherIds);
-
-        return teacherGroupDTO;
-    }
-
-    public TeacherGroup convertToEntity(TeacherGroupDTO teacherGroupDTO) {
-        TeacherGroup teacherGroup = new TeacherGroup();
-        teacherGroup.setGroupId(teacherGroupDTO.getGroupId());
-        teacherGroup.setName(teacherGroupDTO.getName());
-        teacherGroup.setDescription(teacherGroupDTO.getDescription());
-
-        List<User> teachers = new ArrayList<>();
-        for (Integer teacherId : teacherGroupDTO.getTeacherIds()) {
-            User teacher = new User();
-            teacher.setUserId(teacherId);
-            teachers.add(teacher);
-        }
-        teacherGroup.setTeachers(teachers);
-
-        return teacherGroup;
-    }
 }

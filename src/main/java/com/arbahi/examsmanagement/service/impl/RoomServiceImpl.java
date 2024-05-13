@@ -25,21 +25,21 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomDTO> getAllRooms() {
         List<Room> rooms = roomRepository.findAll();
         return rooms.stream()
-                .map(roomDTOMapper::convertToDto)
+                .map(roomDTOMapper::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<RoomDTO> getRoomById(Integer id) {
         Optional<Room> room= roomRepository.findById(id);
-        return Optional.ofNullable(roomDTOMapper.convertToDto(room.orElse(null)));
+        return Optional.ofNullable(roomDTOMapper.convertToDTO(room.orElse(null)));
     }
 
     @Override
     public RoomDTO createRoom(RoomDTO roomDTO) {
         Room room = roomDTOMapper.convertToEntity(roomDTO);
         Room savedRoom=roomRepository.save(room);
-        return roomDTOMapper.convertToDto(savedRoom);
+        return roomDTOMapper.convertToDTO(savedRoom);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class RoomServiceImpl implements RoomService {
             existingRoom.setName(updatedRoomDTO.getName());
             existingRoom.setCapacity(updatedRoomDTO.getCapacity());
             Room savedRoom = roomRepository.save(existingRoom);
-            return roomDTOMapper.convertToDto(savedRoom);
+            return roomDTOMapper.convertToDTO(savedRoom);
         }
         return null;
     }

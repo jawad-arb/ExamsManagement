@@ -2,22 +2,21 @@ package com.arbahi.examsmanagement.dtoMapper;
 
 import com.arbahi.examsmanagement.dto.PedagogicalElementDTO;
 import com.arbahi.examsmanagement.entity.PedagogicalElement;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
-@Component
-@RequiredArgsConstructor
-public class PedagogicalElementDTOMapper {
+import java.util.List;
 
-    private final ModelMapper modelMapper;
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,uses = UsersDTOMapper.class)
+public interface PedagogicalElementDTOMapper {
 
-    public PedagogicalElementDTO convertToDTO(PedagogicalElement pedagogicalElement) {
-        return modelMapper.map(pedagogicalElement, PedagogicalElementDTO.class);
-    }
+     PedagogicalElementDTO convertToDTO(PedagogicalElement pedagogicalElement);
 
-    public PedagogicalElement convertToEntity(PedagogicalElementDTO pedagogicalElementDTO) {
-        return modelMapper.map(pedagogicalElementDTO, PedagogicalElement.class);
-    }
+     PedagogicalElement convertToEntity(PedagogicalElementDTO pedagogicalElementDTO);
+
+    List<PedagogicalElementDTO> convertToDTOs(List<PedagogicalElement> pedagogicalElements);
+
+    List<PedagogicalElement> convertToEntities(List<PedagogicalElementDTO> pedagogicalElementDTOs);
+
 
 }

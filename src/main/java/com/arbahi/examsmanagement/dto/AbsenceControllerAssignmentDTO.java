@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 public class AbsenceControllerAssignmentDTO {
     private Integer id;
-    private Integer examId;
-    private Integer roomId;
-    private Integer absenceControllerId;
+    private ExamDTO exam;
+    private RoomDTO room;
+    private UsersDTO absenceController;
 }

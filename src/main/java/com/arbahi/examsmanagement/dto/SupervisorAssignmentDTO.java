@@ -10,9 +10,9 @@ import lombok.*;
 public class SupervisorAssignmentDTO {
     private Integer id;
 
-    private Integer examId;
+    private ExamDTO exam;
 
-    private Integer roomId;
+    private RoomDTO room;
 
-    private Integer invigilatorId;
+    private UsersDTO invigilator;
 }

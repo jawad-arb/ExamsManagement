@@ -13,6 +13,5 @@ public class PedagogicalElementDTO {
     private String title;
     private String level;
     private String type;
-    private Integer coordinatorId;
-
+    private UsersDTO coordinator;
 }
