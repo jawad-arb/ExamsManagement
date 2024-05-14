@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+</head>
+<body>
+<h1>Update User</h1>
+<form th:action="@{/users/update}" method="post" th:object="${user}">
+    <input type="hidden" th:field="*{userId}" />
+    FirstName: <input type="text" th:field="*{firstName}"/><br/>
+    LastName: <input type="text" th:field="*{lastName}"/><br/>
+    Type:
+    <select th:field="*{type}">
+        <option th:each="userType : ${T(com.arbahi.examsmanagement.enums.UserType).values()}"
+                th:value="${userType}" th:text="${userType}"></option>
+    </select><br/>
+    Email: <input type="email" th:field="*{email}"/><br/>
+    Password: <input type="password" th:field="*{password}"/><br/> <!-- New password field -->
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

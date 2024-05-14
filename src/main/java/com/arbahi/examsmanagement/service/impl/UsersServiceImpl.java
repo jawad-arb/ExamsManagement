@@ -1,7 +1,10 @@
 package com.arbahi.examsmanagement.service.impl;
 
 import com.arbahi.examsmanagement.Exceptions.UserNotFoundException;
+import com.arbahi.examsmanagement.dto.UsersDTO;
+import com.arbahi.examsmanagement.dtoMapper.UsersDTOMapper;
 import com.arbahi.examsmanagement.entity.User;
+import com.arbahi.examsmanagement.enums.UserType;
 import com.arbahi.examsmanagement.repository.UsersRepository;
 import com.arbahi.examsmanagement.service.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -13,26 +16,29 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UsersServiceImpl implements UsersService {
     private final UsersRepository usersRepository;
+    private final UsersDTOMapper usersDTOMapper;
+
     @Override
-    public User createUser(User user) {
-        return usersRepository.save(user);
+    public UsersDTO createUser(UsersDTO userDTO) {
+        User user=usersDTOMapper.convertToEntity(userDTO);
+        return usersDTOMapper.convertToDTO(usersRepository.save(user));
     }
 
     @Override
-    public User getUserById(Integer userId) {
+    public UsersDTO getUserById(Integer userId) throws UserNotFoundException {
         Optional<User> user= usersRepository.findById(userId);
         if (user.isPresent())
-            return user.orElse(null);
-        return null;
+            return usersDTOMapper.convertToDTO(user.get());
+        throw new UserNotFoundException();
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return usersRepository.findAll();
+    public List<UsersDTO> getAllUsers() {
+        return usersDTOMapper.convertToDTOs(usersRepository.findAll());
     }
 
     @Override
-    public User updateUser(Integer userId, User updatedUser) throws UserNotFoundException {
+    public UsersDTO updateUser(Integer userId, UsersDTO updatedUser) throws UserNotFoundException {
         Optional<User> optionalUser = usersRepository.findById(userId);
 
         if (optionalUser.isPresent()) {
@@ -41,10 +47,10 @@ public class UsersServiceImpl implements UsersService {
             existingUser.setFirstName(updatedUser.getFirstName());
             existingUser.setLastName(updatedUser.getLastName());
             existingUser.setEmail(updatedUser.getEmail());
+            UserType userType = UserType.valueOf(updatedUser.getType());
+            existingUser.setType(userType);
             existingUser.setPassword(updatedUser.getPassword());
-            existingUser.setType(updatedUser.getType());
-
-            return usersRepository.save(existingUser);
+            return usersDTOMapper.convertToDTO(usersRepository.save(existingUser));
         } else {
             throw new UserNotFoundException();
         }

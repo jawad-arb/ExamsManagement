@@ -1,19 +1,19 @@
 package com.arbahi.examsmanagement.service;
 
 import com.arbahi.examsmanagement.Exceptions.UserNotFoundException;
-import com.arbahi.examsmanagement.entity.User;
+import com.arbahi.examsmanagement.dto.UsersDTO;
 
 import java.util.List;
 
 public interface UsersService {
 
-    User createUser(User user);
+    UsersDTO createUser(UsersDTO user);
 
-    User getUserById(Integer userId);
+    UsersDTO getUserById(Integer userId) throws UserNotFoundException;
 
-    List<User> getAllUsers();
+    List<UsersDTO> getAllUsers();
 
-    User updateUser(Integer userId, User updatedUser) throws UserNotFoundException;
+    UsersDTO updateUser(Integer userId, UsersDTO updatedUser) throws UserNotFoundException;
 
     void deleteUser(Integer userId);
 }

@@ -20,6 +20,9 @@ public class UsersDTO {
     @NotBlank(message = "Last name is required.")
     private String lastName;
 
+    @NotBlank(message = "password is required")
+    private String password;
+
     @NotNull(message = "Type is required.")
     private String type;
 
